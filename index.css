@@ -1,0 +1,68 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  height: auto;
+  border: 2px solid black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-logo {
+  height: 5rem;
+}
+
+.header-links {
+  display: flex;
+  list-style-type: none;
+}
+
+.header-links > li {
+  padding-left: 20px;
+}
+
+.signin-button {
+  margin-right: 10px;
+  padding: 10px;
+  background-color: azure;
+}
+.logout-button {
+  margin-right: 10px;
+  padding: 10px;
+  background-color: rgb(255, 115, 0);
+}
+
+.restaurant-card {
+  width: 220px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  margin: 10px;
+}
+.restaurant-card > img {
+  width: 200px;
+  height: 180px;
+}
+.restaurant-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.search-bar {
+  text-align: center;
+  padding: 10px;
+}
+
+.search-bar > input {
+  width: 450px;
+  height: 30px;
+}
+.search-bar > button {
+  padding: 8px;
+  margin-left: 5px;
+  background-color: azure;
+}
