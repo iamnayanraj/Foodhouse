@@ -1,11 +1,13 @@
 import Header from "./header";
-import Body from "./body";
+import Footer from "./footer";
+import { Outlet } from "react-router-dom";
 
 const App = () => {
   return (
     <>
       <Header />
-      <Body />
+      <Outlet />
+      <Footer />
     </>
   );
 };

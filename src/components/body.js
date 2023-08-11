@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import RestaurantCard from "./restaurantCard";
 import SearchBar from "./searchBar";
+import { LATTITUDE, LONGITUDE, RES_LIST_BASE_URL } from "../config";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   const [restaurantList, setRestaurantList] = useState([]);
@@ -13,7 +15,7 @@ const Body = () => {
 
   const getRestaurantList = async () => {
     const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=24.7486689&lng=84.3807025&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      `${RES_LIST_BASE_URL}lat=${LATTITUDE}&lng=${LONGITUDE}`
     );
     const jsonData = await data.json();
     // console.log(jsonData?.data?.cards);
@@ -50,16 +52,20 @@ const Body = () => {
       <div className="restaurant-list">
         {filteredRestaurantList?.map((restaurant) => {
           return (
-            <RestaurantCard
-              key={restaurant?.info?.id}
-              name={restaurant?.info?.name}
-              address={
-                restaurant?.info?.locality + " , " + restaurant?.info?.areaName
-              }
-              imgId={restaurant?.info?.cloudinaryImageId}
-              rating={restaurant?.info?.avgRating}
-              costForTwo={restaurant?.info?.costForTwo}
-            />
+            <Link className="link" to={`/restaurant/${restaurant?.info?.id}`}>
+              <RestaurantCard
+                key={restaurant?.info?.id}
+                name={restaurant?.info?.name}
+                address={
+                  restaurant?.info?.locality +
+                  " , " +
+                  restaurant?.info?.areaName
+                }
+                imgId={restaurant?.info?.cloudinaryImageId}
+                rating={restaurant?.info?.avgRating}
+                costForTwo={restaurant?.info?.costForTwo}
+              />
+            </Link>
           );
         })}
       </div>
