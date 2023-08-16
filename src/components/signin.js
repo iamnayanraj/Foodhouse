@@ -4,8 +4,11 @@ const Signin = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const isAuthenticate = () => {
     //some logic to authenticate. Currenlty making it true always
+    setIsLoggedIn(true);
+  };
 
-    setIsLoggedIn(!isLoggedIn);
+  const logOut = () => {
+    setIsLoggedIn(false);
   };
 
   return (
@@ -22,7 +25,7 @@ const Signin = () => {
       ) : (
         <button
           onClick={() => {
-            isAuthenticate();
+            logOut();
           }}
           className="logout-button"
         >
