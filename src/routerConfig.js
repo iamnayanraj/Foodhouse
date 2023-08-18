@@ -8,6 +8,10 @@ import Error from "./components/error";
 import Body from "./components/body";
 import RestaurantMenu from "./components/restaurantMenu";
 import Cart from "./components/cart";
+// import Instamart from "./components/instamart";
+import { lazy, Suspense } from "react";
+
+const Instamart = lazy(() => import("./components/instamart"));
 
 const router = createBrowserRouter([
   {
@@ -34,6 +38,14 @@ const router = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />,
+      },
+      {
+        path: "/instamart",
+        element: (
+          <Suspense>
+            <Instamart />
+          </Suspense>
+        ),
       },
     ],
   },

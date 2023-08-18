@@ -3,32 +3,25 @@ import Footer from "./footer";
 import { Outlet } from "react-router-dom";
 import { store } from "../redux/store";
 import { Provider } from "react-redux";
-import { useEffect, useState } from "react";
-import userContext from "../utils/userContext";
+import { useState } from "react";
+import { userContext, authContext } from "../utils/context";
 
 const App = () => {
   const [user, setUser] = useState({
-    name: "",
-    email: "",
+    name: "guest user",
+    email: "guestuser@email.com",
   });
-
-  useEffect(() => {
-    //get user details. Curretly hardcoded
-
-    const loggedInUser = {
-      name: "Nayan Raj",
-      email: "nr@gmail.com",
-    };
-    setUser(loggedInUser);
-  }, []);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   return (
     <Provider store={store}>
-      <userContext.Provider value={user}>
-        <Header />
-        <Outlet />
-        <Footer />
-      </userContext.Provider>
+      <authContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>
+        <userContext.Provider value={{ user, setUser }}>
+          <Header />
+          <Outlet />
+          <Footer />
+        </userContext.Provider>
+      </authContext.Provider>
     </Provider>
   );
 };

@@ -8,13 +8,16 @@ const HeaderLinks = () => {
   return (
     <ul className="header-links">
       <Link className="link" to="/">
-        <li>Home</li>
+        <li key="home">Home</li>
       </Link>
       <Link className="link" to="/about">
-        <li>About Us</li>
+        <li key="about">About Us</li>
       </Link>
       <Link className="link" to="/contact">
-        <li>Contact Us</li>
+        <li key="contact">Contact Us</li>
+      </Link>
+      <Link className="link" to="/instamart">
+        <li key="instamart">Instamart</li>
       </Link>
     </ul>
   );

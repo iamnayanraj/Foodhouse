@@ -1,13 +1,18 @@
 import { useContext } from "react";
-import userContext from "../utils/userContext";
+import { userContext, authContext } from "../utils/context";
 
 const Footer = () => {
-  const { name, email } = useContext(userContext);
+  const { user } = useContext(userContext);
+  const { isAuthenticated } = useContext(authContext);
 
   return (
-    <h4>
-      {name}-{email} is logged in
-    </h4>
+    <>
+      {isAuthenticated && (
+        <h4>
+          {user.name}-{user.email} is logged in.
+        </h4>
+      )}
+    </>
   );
 };
 

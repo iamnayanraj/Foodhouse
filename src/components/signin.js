@@ -1,22 +1,37 @@
-import { useState } from "react";
+import { useContext } from "react";
+import { authContext, userContext } from "../utils/context";
 
 const Signin = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const isAuthenticate = () => {
+  const { isAuthenticated, setIsAuthenticated } = useContext(authContext);
+  const { setUser } = useContext(userContext);
+
+  const authenticate = () => {
     //some logic to authenticate. Currenlty making it true always
-    setIsLoggedIn(true);
+    // logic to get aunthenticated loggedin user
+
+    const loggedInUser = {
+      name: "Nayan Raj",
+      email: "nr@gmail.com",
+    };
+    setUser(loggedInUser);
+    setIsAuthenticated(true);
   };
 
   const logOut = () => {
-    setIsLoggedIn(false);
+    setUser({
+      name: "guest user",
+      email: "guestuser@email.com",
+    });
+
+    setIsAuthenticated(false);
   };
 
   return (
     <>
-      {!isLoggedIn ? (
+      {!isAuthenticated ? (
         <button
           onClick={() => {
-            isAuthenticate();
+            authenticate();
           }}
           className="signin-button"
         >

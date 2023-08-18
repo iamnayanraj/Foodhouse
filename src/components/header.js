@@ -3,21 +3,25 @@ import HeaderLinks from "./headerLinks";
 import Signin from "./signin";
 import "../../index.css";
 import CartLink from "./cartLink";
-import userContext from "../utils/userContext";
+import { userContext } from "../utils/context";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
-  const { name, email } = useContext(userContext);
+  const { user } = useContext(userContext);
 
   return (
     <div className="header">
-      <Logo />
+      <Link to="/">
+        <Logo />
+      </Link>
+
       <HeaderLinks />
       <CartLink />
       {
-        <h1>
-          {name}-{email}
-        </h1>
+        <h4>
+          {user.name}-{user.email}
+        </h4>
       }
       <Signin />
     </div>
