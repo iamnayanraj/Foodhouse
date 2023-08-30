@@ -6,10 +6,12 @@ import CartLink from "./cartLink";
 import { userContext } from "../utils/context";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
+import useOnline from "../utils/hooks/useOnline";
 
 const Header = () => {
   const { user } = useContext(userContext);
 
+  const isOnline = useOnline();
   return (
     <div className="header">
       <Link to="/">
@@ -18,12 +20,14 @@ const Header = () => {
 
       <HeaderLinks />
       <CartLink />
-      {
+
+      {isOnline && (
         <h4>
           {user.name}-{user.email}
         </h4>
-      }
-      <Signin />
+      )}
+      {isOnline ? "🟢" : "🔴"}
+      {isOnline && <Signin />}
     </div>
   );
 };

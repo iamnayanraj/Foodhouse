@@ -3,11 +3,14 @@ import RestaurantCard from "./restaurantCard";
 import SearchBar from "./searchBar";
 import { LATTITUDE, LONGITUDE, RES_LIST_BASE_URL } from "../config";
 import { Link } from "react-router-dom";
+import useOnline from "../utils/hooks/useOnline";
 
 const Body = () => {
   const [restaurantList, setRestaurantList] = useState([]);
   const [searchRestaurant, setSearchRestaurant] = useState("");
   const [filteredRestaurantList, setFilteredRestaurantList] = useState([]);
+
+  const isOnline = useOnline();
 
   useEffect(() => {
     getRestaurantList();
@@ -42,6 +45,7 @@ const Body = () => {
 
     setFilteredRestaurantList(list);
   };
+  if (!isOnline) return <h3>No Internet 😔</h3>;
   return (
     <>
       <SearchBar
@@ -52,9 +56,12 @@ const Body = () => {
       <div className="restaurant-list">
         {filteredRestaurantList?.map((restaurant) => {
           return (
-            <Link className="link" to={`/restaurant/${restaurant?.info?.id}`}>
+            <Link
+              className="link"
+              to={`/restaurant/${restaurant?.info?.id}`}
+              key={restaurant?.info?.id}
+            >
               <RestaurantCard
-                key={restaurant?.info?.id}
                 name={restaurant?.info?.name}
                 address={
                   restaurant?.info?.locality +
