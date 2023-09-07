@@ -11,7 +11,6 @@ const useOnline = () => {
   };
 
   useEffect(() => {
-    console.log("useonline");
     window.addEventListener("online", handleOnline);
     window.addEventListener("offline", handleoffline);
 

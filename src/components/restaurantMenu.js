@@ -8,7 +8,6 @@ const RestaurantMenu = () => {
   const [resMenu, setresMenu] = useState(null);
 
   const { id } = useParams();
-  console.log(resMenu);
   const getMenuDetils = async () => {
     const res = await fetch(RES_MENU_BASE_URL + id);
     const json = await res.json();

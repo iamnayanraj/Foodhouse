@@ -2,6 +2,7 @@ const SearchBar = ({
   searchRestaurant,
   findRestaurant,
   searchRestaurantHandler,
+  setShowSearchSuggestion,
 }) => {
   return (
     <div className="search-bar">
@@ -10,6 +11,12 @@ const SearchBar = ({
         value={searchRestaurant}
         onChange={(e) => {
           searchRestaurantHandler(e);
+        }}
+        onFocus={() => {
+          setShowSearchSuggestion(true);
+        }}
+        onBlur={() => {
+          setShowSearchSuggestion(false);
         }}
         placeholder="Search Restaurant"
       />
