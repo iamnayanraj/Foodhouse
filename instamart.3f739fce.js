@@ -1,0 +1,2 @@
+var e=("undefined"!=typeof globalThis?globalThis:"undefined"!=typeof self?self:"undefined"!=typeof window?window:"undefined"!=typeof global?global:{}).parcelRequire6037;e.register("hz6FT",function(l,i){Object.defineProperty(l.exports,"__esModule",{value:!0,configurable:!0}),Object.defineProperty(l.exports,"default",{get:()=>d,set:void 0,enumerable:!0,configurable:!0});var o=e("ayMG0"),d=()=>(0,o.jsx)("h1",{children:"Very big file. Will be lazy loaded"})});
+//# sourceMappingURL=instamart.3f739fce.js.map
