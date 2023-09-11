@@ -1,0 +1,94 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  border: 2px solid #000;
+  justify-content: space-between;
+  align-items: center;
+  height: auto;
+  display: flex;
+}
+
+.header-logo {
+  height: 5rem;
+}
+
+.header-links {
+  list-style-type: none;
+  display: flex;
+}
+
+.header-links > li {
+  padding-left: 20px;
+}
+
+.signin-button {
+  background-color: azure;
+  margin-right: 10px;
+  padding: 10px;
+}
+
+.link {
+  color: #000;
+  text-decoration: none;
+}
+
+.logout-button {
+  background-color: #ff7300;
+  margin-right: 10px;
+  padding: 10px;
+}
+
+.restaurant-card {
+  border: 1px solid #000;
+  flex-direction: column;
+  width: 220px;
+  margin: 10px;
+  padding: 10px;
+  display: flex;
+}
+
+.restaurant-card > img {
+  width: 200px;
+  height: 180px;
+}
+
+.restaurant-list {
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  display: flex;
+}
+
+.search-bar {
+  text-align: center;
+  padding: 10px;
+}
+
+.search-bar > input {
+  width: 450px;
+  height: 30px;
+}
+
+.search-bar > button {
+  background-color: azure;
+  margin-left: 5px;
+  padding: 8px;
+}
+
+.suggestion-box {
+  background-color: azure;
+  border-radius: 10px;
+  width: 455px;
+  position: relative;
+  top: -20px;
+  left: 462px;
+}
+
+.suggestion-box > ul {
+  padding: 10px;
+  list-style: none;
+}
+
+/*# sourceMappingURL=index.9e4c6fd2.css.map */
