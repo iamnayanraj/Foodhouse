@@ -28,10 +28,12 @@ body {
   margin-right: 10px;
   padding: 10px;
   background-color: azure;
+  cursor: pointer;
 }
 .link {
   text-decoration: none;
   color: black;
+  cursor: pointer;
 }
 .logout-button {
   margin-right: 10px;
@@ -72,10 +74,39 @@ body {
   background-color: azure;
 }
 
+.shimmer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.shimmercard {
+  width: 220px;
+  height: 450px;
+  padding: 10px;
+  margin: 10px;
+}
+
+.shimmercard-image {
+  width: 220px;
+  height: 200px;
+  padding: 5px;
+  margin: 5px;
+  background-color: gainsboro;
+}
+
+.shimmercard-text {
+  width: 220px;
+  height: 50px;
+  padding: 5px;
+  margin: 5px;
+  background-color: gainsboro;
+}
+
 .suggestion-box {
   width: 455px;
   position: relative;
-  left: 462px;
+  left: 437px;
   top: -20px;
   background-color: azure;
   border-radius: 10px;

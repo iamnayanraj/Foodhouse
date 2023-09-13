@@ -10,6 +10,7 @@ import {
 import { Link } from "react-router-dom";
 import useOnline from "../utils/hooks/useOnline";
 import SearchSuggestion from "./searchSuggestion";
+import Shimmer from "./shimmer";
 
 const Body = () => {
   const [restaurantList, setRestaurantList] = useState([]);
@@ -45,7 +46,7 @@ const Body = () => {
       `${RES_LIST_BASE_URL}lat=${LATTITUDE}&lng=${LONGITUDE}`
     );
     const jsonData = await data.json();
-    // console.log(jsonData?.data?.cards);
+    console.log("json", jsonData);
     setRestaurantList(
       jsonData?.data?.cards[4]?.card.card.gridElements?.infoWithStyle
         ?.restaurants
@@ -56,8 +57,11 @@ const Body = () => {
     );
   };
 
-  const searchRestaurantHandler = (e) => {
-    setSearchRestaurant(e.target.value);
+  console.log(searchRestaurant);
+
+  const searchRestaurantHandler = (value) => {
+    console.log("value", value);
+    setSearchRestaurant(value);
   };
 
   const findRestaurant = () => {
@@ -70,7 +74,7 @@ const Body = () => {
     setFilteredRestaurantList(list);
   };
   if (!isOnline) return <h3>No Internet 😔</h3>;
-  // if (!filteredRestaurantList) return <h3>No Resturant Found</h3>;
+  // if (restaurantList?.length === 0) return <Shimmer />;
   return (
     <>
       <SearchBar
@@ -78,35 +82,45 @@ const Body = () => {
         findRestaurant={findRestaurant}
         searchRestaurantHandler={searchRestaurantHandler}
         setShowSearchSuggestion={setShowSearchSuggestion}
+        showSearchSuggestion={showSearchSuggestion}
+        setSearchRestaurant={setSearchRestaurant}
       />
-
-      {showSearchSuggestion && searchSuggestion && (
-        <SearchSuggestion searchSuggestion={searchSuggestion} />
+      {showSearchSuggestion && searchSuggestion?.length && (
+        <SearchSuggestion
+          searchSuggestion={searchSuggestion}
+          searchRestaurantHandler={searchRestaurantHandler}
+          setShowSearchSuggestion={setShowSearchSuggestion}
+          findRestaurant={findRestaurant}
+        />
       )}
 
-      <div className="restaurant-list">
-        {filteredRestaurantList?.map((restaurant) => {
-          return (
-            <Link
-              className="link"
-              to={`/restaurant/${restaurant?.info?.id}`}
-              key={restaurant?.info?.id}
-            >
-              <RestaurantCard
-                name={restaurant?.info?.name}
-                address={
-                  restaurant?.info?.locality +
-                  " , " +
-                  restaurant?.info?.areaName
-                }
-                imgId={restaurant?.info?.cloudinaryImageId}
-                rating={restaurant?.info?.avgRating}
-                costForTwo={restaurant?.info?.costForTwo}
-              />
-            </Link>
-          );
-        })}
-      </div>
+      {filteredRestaurantList?.length === 0 ? (
+        <h3>No Data Found</h3>
+      ) : (
+        <div className="restaurant-list">
+          {filteredRestaurantList?.map((restaurant) => {
+            return (
+              <Link
+                className="link"
+                to={`/restaurant/${restaurant?.info?.id}`}
+                key={restaurant?.info?.id}
+              >
+                <RestaurantCard
+                  name={restaurant?.info?.name}
+                  address={
+                    restaurant?.info?.locality +
+                    " , " +
+                    restaurant?.info?.areaName
+                  }
+                  imgId={restaurant?.info?.cloudinaryImageId}
+                  rating={restaurant?.info?.avgRating}
+                  costForTwo={restaurant?.info?.costForTwo}
+                />
+              </Link>
+            );
+          })}
+        </div>
+      )}
     </>
   );
 };

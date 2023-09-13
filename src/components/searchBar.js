@@ -3,6 +3,8 @@ const SearchBar = ({
   findRestaurant,
   searchRestaurantHandler,
   setShowSearchSuggestion,
+  showSearchSuggestion,
+  setSearchRestaurant,
 }) => {
   return (
     <div className="search-bar">
@@ -10,17 +12,24 @@ const SearchBar = ({
         type="text"
         value={searchRestaurant}
         onChange={(e) => {
-          searchRestaurantHandler(e);
-        }}
-        onFocus={() => {
           setShowSearchSuggestion(true);
-        }}
-        onBlur={() => {
-          setShowSearchSuggestion(false);
+          searchRestaurantHandler(e.target.value);
         }}
         placeholder="Search Restaurant"
       />
+      {showSearchSuggestion && (
+        <button
+          className="signin-button"
+          onClick={() => {
+            setSearchRestaurant("");
+            setShowSearchSuggestion(false);
+          }}
+        >
+          ❌
+        </button>
+      )}
       <button
+        className="signin-button"
         onClick={() => {
           findRestaurant();
         }}

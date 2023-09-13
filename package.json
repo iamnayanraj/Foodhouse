@@ -2,14 +2,18 @@
   "name": "foodhouse",
   "version": "1.0.0",
   "description": "A food ordering app",
+  "homepage": "https://iamnayanraj.github.io",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel index.html",
-    "build": "parcel build index.html"
+    "build": "parcel build index.html",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "author": "Nayan Raj",
   "license": "ISC",
   "devDependencies": {
+    "gh-pages": "^6.0.0",
     "parcel": "^2.9.3",
     "process": "^0.11.10"
   },
